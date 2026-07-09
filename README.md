@@ -93,11 +93,32 @@ locally with sentence-transformers, and persists the vectors to
 
 Interactive API docs are available at `/docs` once the server is running.
 
+## Frontend setup (development)
+
+```bash
+cd frontend
+npm install
+copy .env.example .env    # VITE_API_BASE_URL defaults to http://localhost:8000
+npm run dev                 # starts the app on http://localhost:5173
+```
+
+Built with Vite + React + TypeScript + Tailwind CSS v4. Design system: a
+custom teal/emerald + warm gold palette (see `src/index.css`'s `@theme`
+block) chosen specifically to avoid the generic indigo/purple gradient look
+common to AI-product demos; chart series colors follow a separately
+validated CVD-safe categorical palette. Dark mode is a manual toggle
+(persisted, defaulting to system preference) rather than a pure media-query
+flip. TanStack Query handles server state; Zustand persists the auth token;
+the chat panel parses the backend's SSE stream by hand over `fetch()`
+(a plain `EventSource` can't send the required `Authorization` header or a
+POST body).
+
 ## Status
 
-Under active development. See `docs/ARCHITECTURE.md` and the task list for
-current progress; this README will gain full API/frontend setup and
-deployment instructions as each layer lands.
+Backend and frontend are both functional end-to-end (auth, chat with live
+streaming reasoning steps, receipt OCR/classification, deterministic
+tax/EPF/SOCSO estimates, the guardrails layer). Remaining work: deploying
+both to a public URL. See `docs/ARCHITECTURE.md` for full design rationale.
 
 ## Disclaimer
 
