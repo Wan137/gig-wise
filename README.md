@@ -79,6 +79,20 @@ URLs and retrieval dates). `ingest_documents.py` chunks them, embeds them
 locally with sentence-transformers, and persists the vectors to
 `backend/chroma_db/` (gitignored - rebuild it anytime with that script).
 
+## API surface
+
+| Endpoint | Purpose |
+|---|---|
+| `POST /auth/signup`, `POST /auth/login`, `GET /auth/me` | Account creation and JWT auth |
+| `POST /chat/sessions`, `GET /chat/sessions` | Create/list conversations |
+| `GET /chat/sessions/{id}/messages` | Conversation history |
+| `POST /chat/sessions/{id}/messages` | Send a message - streams `trace` / `final` / `error` events over SSE as the graph runs |
+| `POST /expenses/upload` | Upload a receipt photo - runs OCR + classification directly, persists the result |
+| `GET /expenses`, `GET /expenses/summary` | List logged expenses / category totals for the dashboard |
+| `GET /profile/tax-profile`, `PUT /profile/tax-profile` | The user's age/sector/EPF status/income estimate |
+
+Interactive API docs are available at `/docs` once the server is running.
+
 ## Status
 
 Under active development. See `docs/ARCHITECTURE.md` and the task list for

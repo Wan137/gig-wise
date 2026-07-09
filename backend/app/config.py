@@ -28,6 +28,10 @@ class Settings(BaseSettings):
     # it on PATH already.
     tesseract_cmd: str = ""
 
+    upload_dir: str = str(BACKEND_DIR / "uploads")
+    max_upload_size_bytes: int = 10 * 1024 * 1024  # 10 MB
+    chat_history_limit: int = 10  # most recent messages loaded as context per turn
+
     environment: str = "development"
     log_level: str = "INFO"
     cors_origins: str = "http://localhost:5173"

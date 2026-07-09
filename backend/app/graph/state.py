@@ -123,12 +123,27 @@ class CopilotState(TypedDict):
     retry_count: int
 
 
-def initial_state(user_id: str, session_id: str, user_message: str) -> CopilotState:
-    """Builds a fresh state for a single incoming user turn."""
+def initial_state(
+    user_id: str,
+    session_id: str,
+    user_message: str,
+    history: list[BaseMessage] | None = None,
+    expense_records: list[ExpenseRecordState] | None = None,
+    pending_receipt: str | None = None,
+) -> CopilotState:
+    """Builds a fresh state for a single incoming user turn.
+
+    `history` seeds prior turns of the same conversation (loaded from the
+    database by the chat router) so the LLM has context beyond the single
+    latest message. `expense_records` seeds the user's previously logged
+    deductible expenses (also loaded from the database), so the Financial
+    Planner can see spending logged in earlier turns or sessions, not just
+    whatever was logged in this exact turn.
+    """
     from langchain_core.messages import HumanMessage
 
     return CopilotState(
-        messages=[HumanMessage(content=user_message)],
+        messages=[*(history or []), HumanMessage(content=user_message)],
         user_id=user_id,
         session_id=session_id,
         intent=None,
@@ -137,8 +152,8 @@ def initial_state(user_id: str, session_id: str, user_message: str) -> CopilotSt
         retrieved_chunks=[],
         tax_calc=None,
         epf_socso=None,
-        expense_records=[],
-        pending_receipt=None,
+        expense_records=list(expense_records or []),
+        pending_receipt=pending_receipt,
         draft_segments=[],
         draft_answer=None,
         verification=None,

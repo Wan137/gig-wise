@@ -1,5 +1,9 @@
 """Extracts numeric inputs via LLM, computes the plan via deterministic Python,
 and has the LLM narrate (never invent) the already-computed numbers.
+
+TODO: fall back to the user's persisted TaxProfile (app/routers/profile.py)
+for age/occupation_sector/estimated_annual_income when the message itself
+doesn't mention them, instead of only asking mid-conversation.
 """
 from __future__ import annotations
 
