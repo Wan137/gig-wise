@@ -55,6 +55,11 @@ docs/       Architecture notes and document sourcing log
 
 ## Backend setup (development)
 
+Requires [Tesseract OCR](https://github.com/UB-Mannheim/tesseract) installed separately (it's a
+system binary, not a Python package) - on Windows: `winget install --id UB-Mannheim.TesseractOCR`;
+on Debian/Ubuntu (and the deploy Dockerfile): `apt-get install tesseract-ocr`. If it's not on your
+PATH, set `TESSERACT_CMD` in `.env` to its full executable path.
+
 ```bash
 cd backend
 python -m venv .venv

@@ -61,13 +61,15 @@ def test_isaraan_plus_question_grounds_in_correct_document(graph):
     assert any("i-Saraan Plus" in doc for doc in source_docs)
 
 
-def test_unimplemented_agents_degrade_gracefully_instead_of_crashing(graph):
+def test_unimplemented_agent_degrades_gracefully_instead_of_crashing(graph):
+    # financial_planning isn't built yet (Task 6); expense_entry is (Task 5) and, since no
+    # receipt image is actually attached to this text-only message, correctly asks for one
+    # rather than fabricating a logged expense.
     result = _run(
         graph, "How much should I set aside every month for tax? Also log a RM50 fuel receipt for me."
     )
     assert result["intent"] == "multi"
     assert result["final_answer"]
-    assert "available yet" in result["final_answer"]
-    # Both parts of the compound request should have been acknowledged, not silently dropped.
-    assert "Expense tracking" in result["final_answer"]
     assert "Financial Planner" in result["final_answer"]
+    assert "available yet" in result["final_answer"]
+    assert "upload a photo" in result["final_answer"].lower()
