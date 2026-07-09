@@ -53,11 +53,29 @@ frontend/   React + Tailwind dashboard and chat UI
 docs/       Architecture notes and document sourcing log
 ```
 
+## Backend setup (development)
+
+```bash
+cd backend
+python -m venv .venv
+.venv\Scripts\activate          # Windows; use `source .venv/bin/activate` on macOS/Linux
+pip install -r requirements-dev.txt
+copy .env.example .env          # fill in GROQ_API_KEY and JWT_SECRET_KEY
+python scripts/ingest_documents.py   # builds the Chroma index from backend/app/rag/documents
+pytest                                 # runs the test suite
+```
+
+The RAG knowledge base is built from real public LHDN/EPF/SOCSO documents
+committed in `backend/app/rag/documents/` (see `SOURCES.md` there for origin
+URLs and retrieval dates). `ingest_documents.py` chunks them, embeds them
+locally with sentence-transformers, and persists the vectors to
+`backend/chroma_db/` (gitignored - rebuild it anytime with that script).
+
 ## Status
 
 Under active development. See `docs/ARCHITECTURE.md` and the task list for
-current progress; this README will gain setup and deployment instructions as
-each layer lands.
+current progress; this README will gain full API/frontend setup and
+deployment instructions as each layer lands.
 
 ## Disclaimer
 
