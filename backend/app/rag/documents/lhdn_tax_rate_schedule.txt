@@ -1,0 +1,47 @@
+SOURCE: LHDN (Lembaga Hasil Dalam Negeri Malaysia / Inland Revenue Board of Malaysia)
+TITLE: Tax Rate - Resident Individual
+URL: https://www.hasil.gov.my/en/individual/individual-life-cycle/income-declaration/tax-rate/
+RETRIEVED: 2026-07-09
+NOTE: The rate schedule below is stated by LHDN to apply to Year of Assessment
+(YA) 2023, 2024, and 2025. This applies to a resident individual's chargeable
+income - the amount remaining after subtracting all allowable business
+expenses (for self-employed/gig income) and personal tax reliefs from gross
+income. The same progressive schedule applies to business income assessed
+under Form B as it does to employment income under Form BE; only the way
+gross/chargeable income is computed differs between the two forms.
+
+== Resident individual progressive tax rate schedule (YA2023-YA2025) ==
+
+| Chargeable Income (RM) | Rate | Cumulative Tax at Top of Band (RM) |
+|--------------------------|------|----------------------------------------|
+| 0 - 5,000                | 0%   | 0                                        |
+| 5,001 - 20,000            | 1%   | 150                                       |
+| 20,001 - 35,000           | 3%   | 600                                       |
+| 35,001 - 50,000           | 6%   | 1,500                                     |
+| 50,001 - 70,000           | 11%  | 3,700                                     |
+| 70,001 - 100,000          | 19%  | 9,400                                     |
+| 100,001 - 400,000         | 25%  | 84,400                                    |
+| 400,001 - 600,000         | 26%  | 136,400                                   |
+| 600,001 - 2,000,000       | 28%  | 528,400                                   |
+| Exceeding 2,000,000       | 30%  | (no upper cumulative figure - open band)  |
+
+How to read this table: tax is charged progressively, band by band - not as a
+single flat rate applied to the whole chargeable income. For example,
+chargeable income of RM60,000 is taxed as: 0% on the first RM5,000, 1% on the
+next RM15,000 (RM150), 3% on the next RM15,000 (RM450), 6% on the next
+RM15,000 (RM900), and 11% on the remaining RM10,000 (RM1,100) - total tax =
+RM150 + RM450 + RM900 + RM1,100 = RM2,600, which equals the RM1,500 cumulative
+tax at the top of the RM35,001-RM50,000 band plus 11% of (RM60,000 -
+RM50,000).
+
+Non-resident individuals are taxed under a different schedule (a flat rate on
+most income categories) referenced elsewhere on the LHDN portal under the
+"Non-Resident" section; this document covers resident individuals only, which
+is the applicable status for Malaysian citizens working full-time as
+e-hailing/delivery drivers or freelancers based in Malaysia.
+
+== Personal tax rebate ==
+
+A resident individual whose chargeable income does not exceed RM35,000
+receives a tax rebate of RM400, applied directly against the computed tax
+payable (after the progressive schedule above), not against chargeable income.

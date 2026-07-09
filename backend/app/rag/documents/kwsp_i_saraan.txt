@@ -1,0 +1,106 @@
+SOURCE: KWSP / EPF (Employees Provident Fund Malaysia)
+TITLE: i-Saraan - Voluntary Contributions for the Self-Employed
+URL: https://www.kwsp.gov.my/en/member/savings/i-saraan
+RETRIEVED: 2026-07-09
+NOTE: Content below is extracted from the official KWSP page above, with site
+navigation/menu text removed. Government incentive rates and caps are subject
+to change via annual Budget announcements - check the retrieval date against
+any newer KWSP circular before relying on this for a live filing decision.
+
+== What it is ==
+
+i-Saraan is a voluntary contribution initiative by EPF, designed to help
+self-employed individuals and gig economy workers without fixed incomes obtain
+Government incentives to grow their retirement savings.
+
+== Benefits ==
+
+Special Incentive: a special incentive of 20% (up to a maximum of RM500) of
+the total EPF voluntary contributions made for the current year. Lifetime
+incentive limit of RM5,000, or when the member turns 60, whichever is earlier
+(subject to Government terms and conditions). The RM5,000 lifetime limit took
+effect from 2024, based on contributions made from 2024 onwards.
+
+Annual Dividend: annual EPF dividends on top of the contributed savings.
+
+Death Assistance: subject to EPF terms and conditions.
+
+Tax Relief: eligible for tax relief, subject to LHDN/IRB terms and conditions.
+
+== Eligibility ==
+
+- Malaysian citizen.
+- Self-employed individual (earns income from their own work, not employed by
+  others), an individual with no fixed income, a civil service member under a
+  pension scheme, or a worker in the gig economy sector.
+- Registered EPF member.
+- Below 60 years of age.
+
+Civil service employees under a pension scheme, and serving military members,
+are both explicitly eligible if they are below 60.
+
+== Contribution limits ==
+
+- Minimum: RM1 (subject to payment channel).
+- Maximum: RM100,000 per year. This is the combined maximum across all
+  Voluntary Contribution channels (i-Simpan, i-Saraan, i-Saraan Plus, i-Suri,
+  and Akaun Persaraan Top-Up Savings) across all payment channels combined,
+  not RM100,000 per channel.
+
+== How much to contribute for the maximum incentive ==
+
+To qualify for the maximum annual special incentive of RM500, a member needs
+to contribute at least RM2,500 per year under i-Saraan (the incentive is 20%
+of contributions, capped at RM500; RM2,500 x 20% = RM500).
+
+Illustration from KWSP: a member contributing RM1,000 in the year receives
+RM200 special incentive; a member contributing RM2,500 or RM5,000 in the year
+both receive the capped RM500 special incentive (since 20% of RM2,500 already
+hits the RM500 cap).
+
+== How the lifetime cap is calculated ==
+
+The lifetime maximum is the cumulative total of annual Special Incentives
+received, capped at RM5,000 or until the member turns 60, whichever comes
+first. Example from KWSP: a member receives the special incentive in both 2024
+and 2025 (RM500 each year) - total accumulated special incentive is RM1,000,
+leaving RM4,000 of lifetime incentive still available (RM5,000 - RM1,000).
+
+== How contributions are distributed across EPF accounts ==
+
+i-Saraan contributions are split into EPF accounts by this ratio:
+- Akaun Persaraan (Account 1): 75%
+- Akaun Sejahtera (Account 2): 15%
+- Akaun Fleksibel (Account 3): 10%
+
+For members who have reached age 55, 100% of contributions go to Akaun Emas
+instead. The special incentive itself is credited to Akaun Persaraan (Account
+1) for members below 55, or to Akaun Emas for members 55 and above. The
+special incentive is credited to the member's account twice a year, subject to
+receipt of the incentive payment from the Government.
+
+== Payment channels ==
+
+One-time or recurring (Auto Simpan) contributions via: KWSP i-Akaun app or
+i-Akaun (Member) web portal; internet banking (Alliance Bank, Bank Islam, Bank
+Muamalat, BSN, CIMB, Hong Leong, Kuwait Finance House, Maybank, MBSB, Public
+Bank, RHB, AmBank); bank agent counters (BSN, Maybank, Public Bank, RHB - RHB
+accepts debit card/transfer only); registered bank agent (EB) BSN; debit card
+via EPF Mobile Team / Relationship & Advisory (RA) services; or Self-Service
+Terminal (SST) at EPF offices.
+
+Contribution payments are credited to the member's EPF account within 3
+working days for electronic payments, or 7 working days for other channels.
+
+== Registration ==
+
+Register via the KWSP i-Akaun app, at any Self-Service Terminal (bring MyKad),
+at an EPF office (Form KWSP 16G (M) - "Permohonan Pendaftaran Caruman Sukarela
+i-Saraan/i-Suri"), or online via i-Saraan Online Registration on the EPF
+website.
+
+== Important notes ==
+
+- All i-Saraan contributions paid to EPF are final - no refunds.
+- Contributions made after a member reaches age 55 are credited into Akaun
+  Emas and can only be withdrawn once the member reaches age 60.

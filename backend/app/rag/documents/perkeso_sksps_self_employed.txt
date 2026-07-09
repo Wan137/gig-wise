@@ -1,0 +1,143 @@
+SOURCE: PERKESO (Social Security Organisation / Pertubuhan Keselamatan Sosial)
+TITLE: Self-Employment Social Security Scheme (SKSPS) - LINDUNG KENDIRI
+URL: https://www.perkeso.gov.my/en/our-services/protection/self-employed.html
+URL: https://www.perkeso.gov.my/en/rate-of-contribution.html
+RETRIEVED: 2026-07-09
+NOTE: Content below is extracted verbatim from the official PERKESO pages above,
+with only site navigation/menu text removed. Figures are current as of the
+retrieval date; PERKESO periodically revises benefit and contribution figures via
+national budget announcements, so the retrieval date should be checked against
+any newer PERKESO circular before relying on this for a live filing decision.
+
+== Overview ==
+
+The Self-Employment Social Security Scheme (LINDUNG KENDIRI) was introduced to
+provide protection for individuals who are self-employed under the provisions of
+the Self-Employment Social Security Act 2017.
+
+In the beginning, this scheme is compulsory for the self-employed in the
+Passenger Transportation Sector which are taxi, e-hailing and bus drivers under
+the provisions of the Self-Employment Social Security Act 2017, which took
+effect on 1 June 2017.
+
+Effective from 1 January 2020, the coverage of the scheme was extended to 19
+other sectors, making it 20 sectors covered by the scheme.
+
+The coverage for self-employed individuals contributing to the scheme starts
+from the date and time the contribution is paid and recognised on the
+contribution payment receipt.
+
+== Self-employed sectors covered (20 total) ==
+
+1. Passenger Transportation Sector (taxi, e-hailing, bus drivers)
+2. Goods or Food Transport (includes food delivery / p-hailing riders)
+3. Agriculture
+4. Livestock
+5. Forestry
+6. Fisheries
+7. Food (food production/preparation)
+8. Construction
+9. Manufacturing
+10. Hawkers
+11. Accommodation Premises
+12. Online Business
+13. Information Technology
+14. Data Processing
+15. Agents
+16. Professional Services
+17. Support Services
+18. Arts
+19. Household Services
+20. Beauty and Healthcare
+
+== Eligibility ==
+
+- Malaysian citizen / permanent resident, without age limit.
+- Individuals who work for themselves to earn a living.
+
+Required documents: photocopy of identity card (IC); copy of driving licence /
+e-hailing profile / permit / certificate, or a letter of confirmation from the
+relevant association or agency, depending on the sector.
+
+== What the scheme covers ==
+
+This scheme provides protection for self-employed insured persons against
+employment injuries, including occupational diseases and accidents during
+work-related activities. Self-employment injury means personal injury to a
+self-employed insured person caused by an accident or an occupational disease
+arising out of and in the course of their self-employment activity, including
+while travelling for the purpose of that activity. Occupational disease is a
+disease caused by or arising from any occupation specified in the Fifth
+Schedule of the Employees' Social Security Act 1969.
+
+== Benefits provided by PERKESO ==
+
+Medical Benefit: free medical treatment at PERKESO's panel clinics/government
+hospitals for a self-employment injury or occupational disease, or
+reimbursement of expenses incurred at non-panel clinics (subject to PERKESO's
+conditions / the Fees Act 1951).
+
+Temporary Disablement Benefit: paid for the period the self-employed insured
+person is on medical leave certified by a doctor for not less than 4 days
+(including the day of the accident); a medical certificate is required. Rate:
+minimum RM30.00 per day, maximum RM105.33 per day.
+
+Permanent Disablement Benefit: available to a self-employed insured person who
+suffers permanent disability due to a self-employment injury. Rate: 90% of the
+selected insured monthly earning. Example calculation of the lump-sum payment
+(assessment 20%, age factor 8873 for below 20 years of age, contribution
+RM592.80): (RM3,950 x 90% - 30 days) x 20% x 8873 = RM210,290.10.
+
+Constant-Attendance Allowance: paid to a self-employed insured person with total
+permanent disablement who is so severely incapacitated as to constantly
+require the personal attendance of another person (certified by a Medical
+Assessor or the Appellate Medical Board). Fixed at RM500 per month.
+
+Dependants' Benefit: if a self-employed insured person dies as a result of a
+self-employment injury, dependants are entitled to a payment of 90% of the
+selected insured monthly earning. Eligible dependants: widow/widower and
+children under 21. If none: (a) parents, (b) brothers/sisters below 21, or (c)
+grandparents. Widow/widower, parents and grandparents receive lifetime
+benefits; children receive the benefit up to age 21 or marriage (whichever is
+earlier), or until completion of a first degree if in higher education.
+
+Facilities for Physical/Vocational Rehabilitation: provided free of charge.
+Physical rehabilitation includes physiotherapy, occupational therapy,
+reconstructive surgery, prosthetics/orthotics and other appliances (wheelchair,
+crutches, hearing aids, spectacles, special shoes, etc). Vocational
+rehabilitation includes courses such as sewing, radio repair, etc.
+
+Funeral Benefit: paid to the eligible person if the self-employed insured
+person dies as a result of a self-employment injury, or while receiving
+periodical Permanent Disablement Benefit. Amount: actual cost incurred or
+RM3,000 (effective from 1 June 2024), whichever is lower.
+
+== Contribution Plan (Rate of Contribution, Self-Employment Social Security
+Scheme, Act 789) ==
+
+There are exactly four insured-earning tiers. A self-employed person selects
+the tier closest to their actual monthly earning; the contribution amount is
+fixed per tier, not a percentage of income.
+
+| No. | Insured Monthly Earning | Contribution Per Month | Contribution Per Year |
+|-----|--------------------------|--------------------------|--------------------------|
+| 1   | RM1,050                  | RM13.10                  | RM157.20                 |
+| 2   | RM1,550                  | RM19.40                  | RM232.80                 |
+| 3   | RM2,950                  | RM36.90                  | RM442.80                 |
+| 4   | RM3,950                  | RM49.40                  | RM592.80                 |
+
+Registration and contribution payment can be made via the Prihatin app or the
+Prihatin Web portal.
+
+== SPS Padanan Caruman (government contribution-matching grant) ==
+
+Separate from the standard contribution table above, PERKESO has periodically
+run a targeted matching-grant programme ("SPS Padanan Caruman" / "Geran
+Padanan Caruman SKSPS") for vulnerable self-employed groups, under which the
+Government subsidises a majority share of the Plan 2 contribution (RM232.80
+per year) and the individual pays the remainder (for example, one PERKESO
+announcement stated the Government financed 80% (RM186.20) and the target
+group paid 20% (RM46.60) of the Plan 2 contribution). This grant is
+budget-dependent, targeted at specific groups, and not a standing entitlement
+for every SKSPS contributor - do not assume it applies without checking current
+PERKESO eligibility criteria for the relevant year.

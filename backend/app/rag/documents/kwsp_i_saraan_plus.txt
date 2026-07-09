@@ -1,0 +1,118 @@
+SOURCE: KWSP / EPF (Employees Provident Fund Malaysia)
+TITLE: i-Saraan Plus for e-Hailing and p-Hailing Drivers
+URL: https://www.kwsp.gov.my/en/member/savings/i-saraan-plus
+RETRIEVED: 2026-07-09
+NOTE: Content below is extracted from the official KWSP page above, with site
+navigation/menu text removed. i-Saraan Plus is a programme introduced starting
+2026 - this is a newly-launched scheme, and terms may still be refined by KWSP
+after this retrieval date.
+
+== What it is ==
+
+i-Saraan Plus is a voluntary contribution initiative by EPF, designed
+specifically for e-hailing and p-hailing drivers. It is an enhancement of the
+existing i-Saraan programme, introduced starting 2026, giving these members
+the opportunity to receive larger Government incentives for retirement
+security, subject to applicable terms and conditions.
+
+i-Saraan (the general scheme) continues unchanged for other self-employed
+individuals and informal-sector workers (small business owners, freelancers,
+etc). i-Saraan Plus is specifically for e-hailing/p-hailing drivers and offers
+a higher incentive cap than standard i-Saraan.
+
+== Definitions ==
+
+e-hailing: the service of transporting passengers using private vehicles,
+booked through electronic mobile applications that connect drivers with
+passengers needing transportation.
+
+p-hailing: the service of delivering food, drinks, or parcels, with orders
+received via mobile applications - the rider collects items from a vendor and
+delivers them to a customer.
+
+Platform Provider: an organisation or business entity that offers work
+opportunities to individuals on an independent/freelance basis under a
+contractual arrangement for e-hailing or p-hailing services.
+
+== Benefits ==
+
+Special Incentive: 20% (up to a maximum of RM600 per year) of the total
+voluntary contributions made in the current year. Lifetime incentive capped at
+RM6,000, or until the member reaches age 60, whichever comes first.
+
+For existing members who already qualify for i-Saraan Plus and previously
+received i-Saraan incentives, the lifetime limit is raised to RM6,000,
+calculated based on incentives received since 2024. For members newly
+qualifying for i-Saraan Plus, the RM6,000 lifetime limit applies to
+contributions made through platform providers starting 2026.
+
+A member can only receive one incentive in a given year - either the standard
+i-Saraan incentive or the i-Saraan Plus incentive, not both simultaneously.
+
+Annual Dividend, Death Assistance, and Tax Relief benefits are the same as
+under regular i-Saraan (subject to EPF/LHDN terms and conditions).
+
+== Eligibility ==
+
+- Malaysian.
+- Working as an e-hailing or p-hailing driver.
+- Contributions must be made through a platform provider under the e-hailing
+  and/or p-hailing sectors to qualify for the i-Saraan Plus incentive.
+- Already an EPF member registered under i-Saraan (must register for i-Saraan
+  first; enrolment into i-Saraan Plus itself is then automatic).
+- Below 60 years of age.
+
+Public service employees under a pensionable scheme, and serving or retired
+military members, are eligible provided they also work as e-hailing/p-hailing
+drivers and contribute through a platform provider.
+
+== Responsibilities of platform providers ==
+
+Platform providers in the e-hailing/p-hailing sectors are required to make
+i-Saraan Plus contributions on behalf of their workers through i-Akaun
+(Employer). This enables the driver to qualify for the 20% (up to RM600/year)
+special incentive.
+
+Drivers may also make additional voluntary contributions through the standard
+individual channels (KWSP i-Akaun app, internet banking, bank agent counters,
+registered bank agents, debit card via EPF Mobile Team/RA, or SST) to maximise
+their total government matching incentive. If a driver contributes through
+more than one platform provider, contributions are aggregated for incentive
+calculation purposes, subject to the RM600/year cap.
+
+== How much to contribute for the maximum incentive ==
+
+To receive the maximum special incentive of RM600 per year, a member needs to
+contribute at least RM3,000 per year under i-Saraan Plus (20% of RM3,000 =
+RM600). KWSP illustration: contributing RM1,000 in the year yields RM200
+incentive; contributing RM3,000 or RM5,000 both yield the capped RM600
+incentive.
+
+== How contributions are distributed across EPF accounts ==
+
+Same distribution as regular i-Saraan:
+- Akaun Persaraan (Account 1): 75%
+- Akaun Sejahtera (Account 2): 15%
+- Akaun Fleksibel (Account 3): 10%
+
+For members 55 and above, contributions go entirely to Akaun Emas. The special
+incentive is credited to Akaun Persaraan (Account 1) for members below 55, or
+Akaun Emas for members 55 and above, twice a year (subject to receipt of the
+incentive payment from the Government).
+
+== Registration ==
+
+A driver must first be registered for i-Saraan (via the KWSP i-Akaun app,
+Self-Service Terminal, an EPF office using Form KWSP 16G (M), or i-Saraan
+Online Registration). Enrolment in i-Saraan Plus itself then happens
+automatically the first time a contribution is made through the driver's
+platform provider - no separate registration step is required for i-Saraan
+Plus.
+
+== Important notes ==
+
+- All i-Saraan Plus contributions paid to EPF are final - no refunds. Members
+  must consent to the service provider before the contribution payment is
+  made.
+- Contribution limits: minimum RM1 (subject to payment channel), maximum
+  RM100,000 per year combined across all EPF Voluntary Contribution channels.
