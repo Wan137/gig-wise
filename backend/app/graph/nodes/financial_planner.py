@@ -13,7 +13,7 @@ from app.finance.planner import build_financial_plan, render_plan_breakdown
 from app.graph.llm import get_llm
 from app.graph.prompts.financial_planner_prompts import EXTRACTION_SYSTEM_PROMPT, NARRATION_SYSTEM_PROMPT
 from app.graph.state import CopilotState, EPFSocsoResult, TaxCalculationResult
-from app.graph.utils import append_draft, latest_user_message, make_trace
+from app.graph.utils import latest_user_message, make_segment, make_trace
 
 logger = logging.getLogger(__name__)
 
@@ -26,6 +26,13 @@ _CALCULATION_FAILED_MESSAGE = (
     "amounts and try again."
 )
 _FALLBACK_NARRATION = "Here's your estimate based on the figures you gave me:"
+
+# Marks the boundary between the LLM's narration and the deterministic
+# breakdown block within a financial_planner segment. The Verifier splits on
+# this to isolate the narration (the only part that can contain an
+# unverified/hallucinated figure) from the breakdown (always correct by
+# construction) - see app/graph/nodes/verifier.py.
+BREAKDOWN_DELIMITER = "\n\n<!--BREAKDOWN-->\n\n"
 
 
 class FinancialPlanningRequest(BaseModel):
@@ -70,13 +77,13 @@ def financial_planner_node(state: CopilotState) -> dict:
         request = extractor.invoke([SystemMessage(content=EXTRACTION_SYSTEM_PROMPT), *state["messages"]])
     except Exception:
         logger.exception("Input extraction LLM call failed in financial_planner_node")
-        return {"draft_answer": append_draft(state, _CLARIFY_INCOME_MESSAGE), "trace": trace}
+        return {"draft_segments": make_segment("financial_planner", _CLARIFY_INCOME_MESSAGE), "trace": trace}
 
     annual_income = request.annual_income or (
         request.monthly_income * 12 if request.monthly_income else None
     )
     if not annual_income or annual_income <= 0:
-        return {"draft_answer": append_draft(state, _CLARIFY_INCOME_MESSAGE), "trace": trace}
+        return {"draft_segments": make_segment("financial_planner", _CLARIFY_INCOME_MESSAGE), "trace": trace}
 
     annual_expenses = request.annual_expenses or (
         request.monthly_expenses * 12 if request.monthly_expenses else None
@@ -93,7 +100,7 @@ def financial_planner_node(state: CopilotState) -> dict:
         )
     except ValueError:
         logger.exception("Financial plan calculation failed in financial_planner_node")
-        return {"draft_answer": append_draft(state, _CALCULATION_FAILED_MESSAGE), "trace": trace}
+        return {"draft_segments": make_segment("financial_planner", _CALCULATION_FAILED_MESSAGE), "trace": trace}
 
     breakdown = render_plan_breakdown(plan)
 
@@ -110,11 +117,11 @@ def financial_planner_node(state: CopilotState) -> dict:
         logger.exception("Narration LLM call failed in financial_planner_node")
         narration = _FALLBACK_NARRATION
 
-    combined_text = f"{narration}\n\n{breakdown}"
+    combined_text = f"{narration}{BREAKDOWN_DELIMITER}{breakdown}"
 
     return {
         "tax_calc": _tax_calc_to_state(plan.tax),
         "epf_socso": _epf_socso_to_state(plan.epf, plan.socso),
-        "draft_answer": append_draft(state, combined_text),
+        "draft_segments": make_segment("financial_planner", combined_text),
         "trace": trace,
     }

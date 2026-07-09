@@ -12,7 +12,7 @@ from app.graph.prompts.tax_advisor_prompts import (
     format_citations_footer,
 )
 from app.graph.state import CopilotState, RetrievedChunk
-from app.graph.utils import append_draft, latest_user_message, make_trace
+from app.graph.utils import latest_user_message, make_segment, make_trace
 from app.rag.retriever import RagIndexNotBuiltError, TaxKnowledgeRetriever
 
 logger = logging.getLogger(__name__)
@@ -60,13 +60,13 @@ def tax_advisor_node(state: CopilotState) -> dict:
     except RagIndexNotBuiltError:
         logger.error("Tax Advisor called before the RAG index was built")
         return {
-            "draft_answer": append_draft(state, _FALLBACK_MESSAGE),
+            "draft_segments": make_segment("tax_advisor", _FALLBACK_MESSAGE),
             "trace": make_trace("tax_advisor", "Checking LHDN guidelines..."),
         }
     except Exception:
         logger.exception("Retrieval failed in tax_advisor_node")
         return {
-            "draft_answer": append_draft(state, _FALLBACK_MESSAGE),
+            "draft_segments": make_segment("tax_advisor", _FALLBACK_MESSAGE),
             "trace": make_trace("tax_advisor", "Checking LHDN guidelines..."),
         }
 
@@ -81,7 +81,7 @@ def tax_advisor_node(state: CopilotState) -> dict:
     except Exception:
         logger.exception("LLM call failed in tax_advisor_node")
         return {
-            "draft_answer": append_draft(state, _FALLBACK_MESSAGE),
+            "draft_segments": make_segment("tax_advisor", _FALLBACK_MESSAGE),
             "retrieved_chunks": (state.get("retrieved_chunks") or []) + [
                 RetrievedChunk(
                     content=c.content,
@@ -99,7 +99,7 @@ def tax_advisor_node(state: CopilotState) -> dict:
     answer_with_footer = f"{answer_text}\n{footer}" if footer else answer_text
 
     return {
-        "draft_answer": append_draft(state, answer_with_footer),
+        "draft_segments": make_segment("tax_advisor", answer_with_footer),
         "retrieved_chunks": (state.get("retrieved_chunks") or []) + [
             RetrievedChunk(
                 content=c.content,

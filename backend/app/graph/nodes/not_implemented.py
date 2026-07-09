@@ -10,13 +10,13 @@ LangGraph raising on an unmapped conditional-edge result.
 from __future__ import annotations
 
 from app.graph.state import CopilotState
-from app.graph.utils import append_draft, make_trace
+from app.graph.utils import make_segment, make_trace
 
 
 def not_implemented_node(state: CopilotState) -> dict:
     agent = state.get("active_agent") or "that feature"
     message = f"{agent} isn't available yet - check back soon!"
     return {
-        "draft_answer": append_draft(state, message),
+        "draft_segments": make_segment("not_implemented", message),
         "trace": make_trace("not_implemented", f"({agent} not available yet)"),
     }

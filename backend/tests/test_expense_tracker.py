@@ -93,7 +93,8 @@ def test_classify_expense_handles_empty_text_without_crashing():
 def test_expense_tracker_node_without_receipt_asks_for_one():
     state = initial_state(user_id="u1", session_id="s1", user_message="log my expense")
     result = expense_tracker_node(state)
-    assert "upload a photo" in result["draft_answer"].lower()
+    assert result["draft_segments"][0]["agent"] == "expense_tracker"
+    assert "upload a photo" in result["draft_segments"][0]["text"].lower()
     assert result["trace"][0]["node"] == "expense_tracker"
 
 
@@ -109,4 +110,4 @@ def test_expense_tracker_node_full_pipeline():
     assert record["category"] == "fuel"
     assert record["tax_deductible"] is True
     assert record["amount"] == pytest.approx(84.50, abs=0.01)
-    assert "PETRONAS" in result["draft_answer"]
+    assert "PETRONAS" in result["draft_segments"][0]["text"]

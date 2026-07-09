@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 
 from langchain_core.messages import HumanMessage
 
-from app.graph.state import AgentTrace, CopilotState
+from app.graph.state import AgentTrace, CopilotState, DraftSegment
 
 
 def latest_user_message(state: CopilotState) -> str:
@@ -26,13 +26,11 @@ def make_trace(node: str, message: str) -> list[AgentTrace]:
     ]
 
 
-def append_draft(state: CopilotState, new_text: str) -> str:
-    """Combines a specialist agent's output with any prior draft from the same turn.
-
-    A "multi" intent turn runs several agents back-to-back before the
-    responder ever sees the state, so a node must never blindly overwrite
-    `draft_answer` - doing so silently discards an earlier agent's (already
-    correct) answer instead of adding to it.
+def make_segment(agent: str, text: str) -> list[DraftSegment]:
+    """A specialist agent's contribution for this turn, to be merged via the
+    `draft_segments` reducer. Kept separate per-agent (rather than
+    concatenated into one string) so the Verifier can check each segment
+    against the right ground truth for its own agent - see DraftSegment's
+    docstring in state.py for why.
     """
-    existing = state.get("draft_answer")
-    return f"{existing}\n\n{new_text}" if existing else new_text
+    return [DraftSegment(agent=agent, text=text)]

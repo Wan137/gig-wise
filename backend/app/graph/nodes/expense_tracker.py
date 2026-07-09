@@ -5,7 +5,7 @@ import logging
 import uuid
 
 from app.graph.state import CopilotState, ExpenseRecordState
-from app.graph.utils import append_draft, make_trace
+from app.graph.utils import make_segment, make_trace
 from app.ocr.expense_classifier import classify_expense
 from app.ocr.receipt_ocr import OcrError, run_ocr
 
@@ -34,7 +34,7 @@ def expense_tracker_node(state: CopilotState) -> dict:
     receipt_path = state.get("pending_receipt")
     if not receipt_path:
         return {
-            "draft_answer": append_draft(state, _NO_RECEIPT_MESSAGE),
+            "draft_segments": make_segment("expense_tracker", _NO_RECEIPT_MESSAGE),
             "trace": make_trace("expense_tracker", "Looking for a receipt to read..."),
         }
 
@@ -43,7 +43,7 @@ def expense_tracker_node(state: CopilotState) -> dict:
     except OcrError:
         logger.exception("OCR failed for receipt at %s", receipt_path)
         return {
-            "draft_answer": append_draft(state, _OCR_FAILED_MESSAGE),
+            "draft_segments": make_segment("expense_tracker", _OCR_FAILED_MESSAGE),
             "trace": make_trace("expense_tracker", "Reading your receipt..."),
         }
 
@@ -64,6 +64,6 @@ def expense_tracker_node(state: CopilotState) -> dict:
 
     return {
         "expense_records": (state.get("expense_records") or []) + [record],
-        "draft_answer": append_draft(state, summary),
+        "draft_segments": make_segment("expense_tracker", summary),
         "trace": make_trace("expense_tracker", "Reading your receipt..."),
     }

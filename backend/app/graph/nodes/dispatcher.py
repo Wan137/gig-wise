@@ -27,5 +27,5 @@ def dispatcher_node(state: CopilotState) -> dict:
 def route_from_dispatcher(state: CopilotState) -> str:
     active = state.get("active_agent")
     if active is None:
-        return "responder"
+        return "verifier"
     return _IMPLEMENTED_AGENTS.get(active, "not_implemented")

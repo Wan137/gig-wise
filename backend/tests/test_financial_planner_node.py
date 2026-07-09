@@ -36,7 +36,7 @@ def test_extracts_income_and_computes_correct_tax():
     epf_socso = result["epf_socso"]
     assert epf_socso["epf_scheme"] == "i-Saraan Plus"  # correctly detected as an e-hailing driver
 
-    assert "RM140.00" in result["draft_answer"]  # deterministic breakdown block is always present
+    assert "RM140.00" in result["draft_segments"][0]["text"]  # deterministic breakdown block is always present
 
 
 def test_asks_for_income_when_none_mentioned():
@@ -44,7 +44,7 @@ def test_asks_for_income_when_none_mentioned():
     result = financial_planner_node(state)
 
     assert result.get("tax_calc") is None
-    assert "income" in result["draft_answer"].lower()
+    assert "income" in result["draft_segments"][0]["text"].lower()
 
 
 def test_uses_logged_expenses_from_same_turn_when_not_restated():

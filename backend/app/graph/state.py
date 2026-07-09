@@ -74,8 +74,22 @@ class ExpenseRecordState(TypedDict, total=False):
 class VerificationResult(TypedDict, total=False):
     passed: bool
     checks: list[dict]
-    corrected_answer: str | None
     flagged_for_review: bool
+
+
+class DraftSegment(TypedDict):
+    """One specialist agent's raw (not-yet-verified) contribution to the reply.
+
+    Segments are kept separate - rather than each agent appending straight
+    into one shared string - specifically so the Verifier can check each
+    segment against the *right* ground truth for its own agent (retrieved
+    chunks for tax_advisor, tax_calc/epf_socso for financial_planner) without
+    one agent's citations of general LHDN figures getting misread as
+    unverified claims about another agent's numbers.
+    """
+
+    agent: str
+    text: str
 
 
 class CopilotState(TypedDict):
@@ -95,7 +109,10 @@ class CopilotState(TypedDict):
     expense_records: list[ExpenseRecordState]
     pending_receipt: str | None
 
-    # The guardrails pipeline.
+    # The guardrails pipeline: specialist agents append segments; the
+    # Verifier checks/corrects them and produces draft_answer; the responder
+    # finalizes draft_answer (or, if no segments ran at all, replies directly).
+    draft_segments: Annotated[list[DraftSegment], operator.add]
     draft_answer: str | None
     verification: VerificationResult | None
     final_answer: str | None
@@ -122,6 +139,7 @@ def initial_state(user_id: str, session_id: str, user_message: str) -> CopilotSt
         epf_socso=None,
         expense_records=[],
         pending_receipt=None,
+        draft_segments=[],
         draft_answer=None,
         verification=None,
         final_answer=None,
