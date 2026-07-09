@@ -9,9 +9,11 @@ from __future__ import annotations
 
 from app.graph.state import CopilotState
 
-# Agents not yet implemented route here instead of crashing the graph -
-# replaced by a real node as Task 6 (Financial Planner) lands.
-_IMPLEMENTED_AGENTS = {"tax_question": "tax_advisor", "expense_entry": "expense_tracker"}
+_IMPLEMENTED_AGENTS = {
+    "tax_question": "tax_advisor",
+    "expense_entry": "expense_tracker",
+    "financial_planning": "financial_planner",
+}
 
 
 def dispatcher_node(state: CopilotState) -> dict:

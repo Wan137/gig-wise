@@ -1,25 +1,21 @@
-"""Graceful placeholder for subtasks whose specialist agent isn't built yet.
+"""Graceful fallback for a subtask type the dispatcher doesn't recognize.
 
-Loops back to the dispatcher rather than dead-ending, so a "multi" intent
-turn that needs both an implemented and an unimplemented agent still
-completes the parts it can.
+All three specialist agents (tax_question, expense_entry, financial_planning)
+are implemented as of Task 6, so nothing in SubtaskType routes here today -
+this stays in the graph as a safety net for the routing logic itself: if
+`_IMPLEMENTED_AGENTS` in dispatcher.py and the orchestrator's SubtaskType enum
+ever drift out of sync, a turn still degrades to a clear message instead of
+LangGraph raising on an unmapped conditional-edge result.
 """
 from __future__ import annotations
 
 from app.graph.state import CopilotState
 from app.graph.utils import append_draft, make_trace
 
-_FRIENDLY_MESSAGE_BY_AGENT = {
-    "financial_planning": (
-        "Tax/EPF/SOCSO calculations aren't available yet - the Financial Planner is still being built. "
-        "Check back soon!"
-    ),
-}
-
 
 def not_implemented_node(state: CopilotState) -> dict:
     agent = state.get("active_agent") or "that feature"
-    message = _FRIENDLY_MESSAGE_BY_AGENT.get(agent, f"{agent} isn't available yet - check back soon!")
+    message = f"{agent} isn't available yet - check back soon!"
     return {
         "draft_answer": append_draft(state, message),
         "trace": make_trace("not_implemented", f"({agent} not available yet)"),

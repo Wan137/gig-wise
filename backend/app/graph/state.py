@@ -36,16 +36,28 @@ class TaxCalculationResult(TypedDict, total=False):
     assessment_year: int
     gross_income: float
     allowable_expenses: float
+    adjusted_income: float
+    reliefs_applied: float
     chargeable_income: float
+    tax_before_rebate: float
+    rebate_applied: float
     tax_owed: float
+    effective_rate: float
+    monthly_set_aside: float
+    cp500_instalment_amount: float
     bracket_breakdown: list[dict]
 
 
 class EPFSocsoResult(TypedDict, total=False):
-    epf_suggested_monthly: float
-    socso_scheme: str
-    socso_monthly: float
-    notes: list[str]
+    epf_scheme: str
+    epf_suggested_annual_contribution: float
+    epf_suggested_monthly_contribution: float
+    epf_expected_annual_incentive: float
+    epf_lifetime_incentive_cap: float
+    socso_matched_insured_monthly_earning: float
+    socso_monthly_contribution: float
+    socso_annual_contribution: float
+    socso_note: str
 
 
 class ExpenseRecordState(TypedDict, total=False):
