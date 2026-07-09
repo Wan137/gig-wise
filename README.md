@@ -60,9 +60,12 @@ cd backend
 python -m venv .venv
 .venv\Scripts\activate          # Windows; use `source .venv/bin/activate` on macOS/Linux
 pip install -r requirements-dev.txt
-copy .env.example .env          # fill in GROQ_API_KEY and JWT_SECRET_KEY
+copy .env.example .env          # fill in GROQ_API_KEY, and generate a JWT_SECRET_KEY:
+                                 #   python -c "import secrets; print(secrets.token_hex(32))"
+alembic upgrade head             # creates the SQLite schema
 python scripts/ingest_documents.py   # builds the Chroma index from backend/app/rag/documents
 pytest                                 # runs the test suite
+uvicorn app.main:app --reload          # starts the API on http://localhost:8000
 ```
 
 The RAG knowledge base is built from real public LHDN/EPF/SOCSO documents
