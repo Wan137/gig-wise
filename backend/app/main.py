@@ -16,6 +16,7 @@ from app.config import get_settings
 from app.logging_config import configure_logging
 from app.routers.chat import router as chat_router
 from app.routers.expenses import router as expenses_router
+from app.routers.finance import router as finance_router
 from app.routers.profile import router as profile_router
 
 configure_logging()
@@ -94,4 +95,5 @@ def health_check() -> dict[str, str]:
 app.include_router(auth_router)
 app.include_router(chat_router)
 app.include_router(expenses_router)
+app.include_router(finance_router)
 app.include_router(profile_router)
