@@ -113,12 +113,59 @@ the chat panel parses the backend's SSE stream by hand over `fetch()`
 (a plain `EventSource` can't send the required `Authorization` header or a
 POST body).
 
+## Deployment
+
+Backend on Render (Docker, free tier), database on Supabase (free Postgres),
+frontend on Vercel (static Vite build). Render's free tier has no persistent
+disk, so the app uses Postgres instead of SQLite in production - the schema
+has no SQLite-specific code, and uploaded receipt images are only ever
+written and immediately OCR'd (never re-served), so losing them on restart
+has no functional effect; the extracted data lives in Postgres.
+
+**Database (Supabase):**
+
+1. New Supabase project (free tier, no card required) -> Project Settings ->
+   Database -> copy the connection string (use the "Transaction pooler" URI,
+   port 6543 - Render's free tier is single-instance so this isn't strictly
+   required, but it's the recommended default). Convert its `postgresql://`
+   prefix to `postgresql+psycopg2://` for SQLAlchemy.
+
+**Backend (Render):**
+
+1. New Render Blueprint -> connect the `Wan137/gig-wise` GitHub repo -> Render
+   reads `render.yaml` at the repo root and provisions the `gig-wise-backend`
+   web service from `backend/Dockerfile` on the free plan.
+2. When prompted for the blueprint's env vars (marked `sync: false` in
+   `render.yaml` so they're never committed), set: `GROQ_API_KEY`,
+   `JWT_SECRET_KEY` (`python -c "import secrets; print(secrets.token_hex(32))"`),
+   `DATABASE_URL` (the Supabase URI from above, `+psycopg2` scheme), and
+   `CORS_ORIGINS=https://<your-vercel-domain>` (can be updated after the
+   frontend is deployed). Leave `TESSERACT_CMD` unset (the Dockerfile
+   installs `tesseract-ocr` onto `PATH`).
+3. `start.sh` runs `alembic upgrade head` against Supabase, then starts
+   `uvicorn` on Render's `$PORT`, on every deploy. Note the generated
+   `onrender.com` URL once the first deploy finishes.
+
+**Frontend (Vercel):**
+
+1. New Vercel project -> import the repo -> set root directory to `frontend/`.
+   Framework preset "Vite" (build `npm run build`, output `dist`) is
+   auto-detected; `vercel.json` adds the SPA rewrite so client-side routes
+   (`react-router-dom`) resolve correctly on direct load/refresh.
+2. Set the `VITE_API_BASE_URL` env var to the Render backend's public URL
+   from above. Vite bakes this in at build time, so redeploy after changing
+   it.
+3. Once deployed, update `CORS_ORIGINS` on the Render backend to the Vercel
+   domain (and redeploy) so the browser can actually reach the API.
+
 ## Status
 
 Backend and frontend are both functional end-to-end (auth, chat with live
 streaming reasoning steps, receipt OCR/classification, deterministic
-tax/EPF/SOCSO estimates, the guardrails layer). Remaining work: deploying
-both to a public URL. See `docs/ARCHITECTURE.md` for full design rationale.
+tax/EPF/SOCSO estimates, the guardrails layer), with deploy configs in place
+for Render (`backend/Dockerfile`, `backend/start.sh`, `render.yaml`) +
+Supabase and Vercel (`frontend/vercel.json`). See `docs/ARCHITECTURE.md` for
+full design rationale.
 
 ## Disclaimer
 
