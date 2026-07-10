@@ -14,6 +14,8 @@ from app.config import get_settings
 from app.finance.tax_calculator import calculate_tax
 from app.graph.nodes.financial_planner import BREAKDOWN_DELIMITER
 from app.graph.nodes.verifier import (
+    ClaimAssessment,
+    GroundednessJudgment,
     _numeric_ground_truth,
     _verify_and_fix_financial_numbers,
     _verify_groundedness,
@@ -124,6 +126,63 @@ def test_verifier_node_passes_through_expense_tracker_segments_unchanged():
 
     assert result["draft_answer"] == "Logged RM50.00 at Shell as fuel."
     assert result["verification"]["passed"] is True
+
+
+def test_verifier_node_fails_closed_when_tax_advisor_has_no_retrieved_chunks():
+    # No retrieved_chunks were set on the state (e.g. RAG found no matches) -
+    # there's nothing to check the claim against, so this must not silently
+    # pass the segment through as if it were verified.
+    state = initial_state(user_id="u1", session_id="s1", user_message="hi")
+    state["draft_segments"] = [{"agent": "tax_advisor", "text": "Gig workers pay a flat 2% rate."}]
+    assert not state.get("retrieved_chunks")
+
+    result = verifier_node(state)
+
+    assert result["verification"]["passed"] is False
+    assert result["verification"]["flagged_for_review"] is True
+    assert "double-check" in result["draft_answer"].lower()
+
+
+# --- Groundedness bucketing (mocked judge, no LLM/API key required) ----------------
+
+
+class _FakeStructuredJudge:
+    def __init__(self, judgment: GroundednessJudgment) -> None:
+        self._judgment = judgment
+
+    def invoke(self, _messages):
+        return self._judgment
+
+
+class _FakeLLM:
+    def __init__(self, judgment: GroundednessJudgment) -> None:
+        self._judgment = judgment
+
+    def with_structured_output(self, _schema):
+        return _FakeStructuredJudge(self._judgment)
+
+
+def test_partially_supported_claims_are_treated_as_unverified(monkeypatch):
+    # partially_supported means the claim blends true information with an
+    # unsupported inference (see verifier_prompts.py) - it must not be
+    # bucketed with "supported" and passed through disclaimer-free.
+    judgment = GroundednessJudgment(
+        claims=[ClaimAssessment(claim="Gig income is taxed at your normal rate.", verdict="supported")],
+    )
+    judgment.claims.append(
+        ClaimAssessment(claim="...and e-hailing drivers get an extra RM5,000 relief.", verdict="partially_supported")
+    )
+    monkeypatch.setattr("app.graph.nodes.verifier.get_llm", lambda **_: _FakeLLM(judgment))
+
+    text = "Gig income is taxed at your normal rate, and e-hailing drivers get an extra RM5,000 relief."
+    chunks = [{"source_document": "LHDN Guide", "section": "Overview", "content": "Gig income is taxed at your normal rate."}]
+
+    fixed_text, check, grounded = _verify_groundedness(text, chunks)
+
+    assert grounded is False
+    assert check["passed"] is False
+    assert "extra RM5,000 relief" in fixed_text  # the unverified claim is named in the disclaimer
+    assert "double-check" in fixed_text.lower()
 
 
 # --- Groundedness judge (real LLM call) ---------------------------------------------

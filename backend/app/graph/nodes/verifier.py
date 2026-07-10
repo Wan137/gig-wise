@@ -81,17 +81,31 @@ def _verify_groundedness(text: str, retrieved_chunks: list[dict]) -> tuple[str, 
         disclaimer = _UNVERIFIED_TAX_DISCLAIMER + "- (automatic verification could not run)"
         return text + disclaimer, check, False
 
-    unsupported = [c.claim for c in judgment.claims if c.verdict == "unsupported"]
+    # partially_supported claims blend true information with an unsupported
+    # inference (see verifier_prompts.py) - exactly what this check exists to
+    # catch, so they're treated the same as fully unsupported claims rather
+    # than silently passing through with "supported".
+    unverified = [c.claim for c in judgment.claims if c.verdict != "supported"]
     check = {
         "check": "tax_groundedness",
-        "passed": not unsupported,
-        "detail": f"{len(judgment.claims)} claim(s) checked; unsupported: {unsupported}",
+        "passed": not unverified,
+        "detail": f"{len(judgment.claims)} claim(s) checked; unverified: {unverified}",
     }
 
-    if not unsupported:
+    if not unverified:
         return text, check, True
 
-    disclaimer = _UNVERIFIED_TAX_DISCLAIMER + "\n".join(f"- {claim}" for claim in unsupported)
+    disclaimer = _UNVERIFIED_TAX_DISCLAIMER + "\n".join(f"- {claim}" for claim in unverified)
+    return text + disclaimer, check, False
+
+
+def _no_sources_disclaimer(text: str) -> tuple[str, dict, bool]:
+    check = {
+        "check": "tax_groundedness",
+        "passed": False,
+        "detail": "No source chunks were retrieved for this answer, so groundedness could not be checked.",
+    }
+    disclaimer = _UNVERIFIED_TAX_DISCLAIMER + "- (no matching source document was found to verify this answer against)"
     return text + disclaimer, check, False
 
 
@@ -190,8 +204,16 @@ def verifier_node(state: CopilotState) -> dict:
         agent = segment["agent"]
         text = segment["text"]
 
-        if agent == "tax_advisor" and state.get("retrieved_chunks"):
-            text, check, grounded = _verify_groundedness(text, state["retrieved_chunks"])
+        if agent == "tax_advisor":
+            retrieved_chunks = state.get("retrieved_chunks")
+            if retrieved_chunks:
+                text, check, grounded = _verify_groundedness(text, retrieved_chunks)
+            else:
+                # Fail closed: the tax advisor answered with no source chunks
+                # to ground it in, so there's nothing to check against - treat
+                # it the same as an unverifiable answer rather than letting it
+                # ship unchecked.
+                text, check, grounded = _no_sources_disclaimer(text)
             checks.append(check)
             if not grounded:
                 flagged = True
