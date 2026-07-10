@@ -9,6 +9,7 @@ import uuid
 from pathlib import Path
 
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, status
+from fastapi.concurrency import run_in_threadpool
 from sqlalchemy.orm import Session
 
 from app.auth.dependencies import get_current_user
@@ -56,7 +57,13 @@ async def upload_receipt(
     image_path.write_bytes(contents)
 
     try:
-        ocr_result = run_ocr(str(image_path))
+        # run_ocr (Tesseract subprocess + OpenCV preprocessing) and
+        # classify_expense (a Groq call) are both blocking. Run them off the
+        # event loop thread so a slow OCR/LLM call can't stall every other
+        # request on this process - including Render's own health-check ping,
+        # which otherwise gets starved long enough that the platform decides
+        # the instance is dead and kills it mid-request.
+        ocr_result = await run_in_threadpool(run_ocr, str(image_path))
     except OcrError as exc:
         logger.warning("OCR failed for uploaded receipt %s: %s", image_path, exc)
         raise HTTPException(
@@ -64,7 +71,7 @@ async def upload_receipt(
             detail="Couldn't read that image - please try again with a clearer photo of the receipt.",
         ) from exc
 
-    classification = classify_expense(ocr_result.raw_text)
+    classification = await run_in_threadpool(classify_expense, ocr_result.raw_text)
 
     record = ExpenseRecord(
         user_id=current_user.id,
