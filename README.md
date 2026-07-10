@@ -4,6 +4,10 @@ A multi-agent AI system that helps Malaysian gig economy workers (e-hailing
 drivers, delivery riders, freelancers) understand their taxes, track deductible
 expenses, and plan how much to set aside for LHDN filing, EPF, and SOCSO.
 
+**Live demo:** https://frontend-xi-self-xil2zut0it.vercel.app
+(backend on a free tier - the first request after a few minutes idle can take
+30-60s to wake up)
+
 ## Why this exists
 
 Gig workers in Malaysia are self-employed for tax purposes. Most don't have
