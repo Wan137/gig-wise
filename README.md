@@ -38,10 +38,10 @@ Full design rationale: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 |---|---|
 | LLM | Groq API (Llama 3.3 70B) |
 | Agent orchestration | LangGraph |
-| Embeddings / vector store | sentence-transformers (local) + ChromaDB |
+| Embeddings / vector store | ChromaDB's local ONNX MiniLM + ChromaDB |
 | OCR | Tesseract |
 | Backend | FastAPI + Server-Sent Events |
-| Database | SQLite |
+| Database | SQLite (dev) / Postgres (production) |
 | Frontend | React + Tailwind CSS |
 
 ## Project layout
