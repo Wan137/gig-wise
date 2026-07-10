@@ -21,7 +21,6 @@ class Settings(BaseSettings):
     database_url: str = "sqlite:///./gigwise.db"
 
     chroma_persist_dir: str = str(BACKEND_DIR / "chroma_db")
-    embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2"
 
     # Only needed on Windows local dev when Tesseract isn't on PATH; left blank
     # on Linux/Docker deploy targets where `apt-get install tesseract-ocr` puts
